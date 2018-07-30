@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import 'bulma/css/bulma.css'
+import 'bulma-fluent/bulma.sass'
 
 import './assets/style/main.sass'
 import './assets/style/animations.sass'
@@ -24,8 +24,3 @@ new Vue({
   store,
   template: '<App/>'
 }).$mount('#app')
-
-/* Enable webpack hot reloading */
-if (module.hot) {
-  module.hot.accept()
-}

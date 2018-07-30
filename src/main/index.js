@@ -3,30 +3,22 @@ import { app, BrowserWindow, ipcMain, Menu, MenuItem } from 'electron'
 /* eslint-enable */
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
-
 let mainWindow
-let winURL = 'http://localhost:9080'
+let winURL = 'http://localhost:1234'
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   try {
     // eslint-disable-next-line
     require('electron-debug')({
       showDevTools: true
     })
   } catch (err) {
-    console.log('Failed to install `electron-debug`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. ')
+    console.log(
+      'Failed to install `electron-debug`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. '
+    )
   }
 } else {
   winURL = `file://${__dirname}/index.html`
-
-  /**
-   * Set `__static` path to static files in production
-   * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
-   */
-  // eslint-disable-next-line
-  global.__static = require('path')
-    .join(__dirname, '/static')
-    .replace(/\\/g, '\\\\') // eslint-disable-line
 }
 
 function installDevTools() {
@@ -34,7 +26,9 @@ function installDevTools() {
     require('devtron').install() //eslint-disable-line
     require('vue-devtools').install() //eslint-disable-line
   } catch (err) {
-    console.log('Failed to install `devtron` & `vue-devtools`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. ')
+    console.log(
+      'Failed to install `devtron` & `vue-devtools`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. '
+    )
   }
 }
 
@@ -80,7 +74,7 @@ function createWindow() {
 app.on('ready', () => {
   createWindow()
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     installDevTools()
   }
 })

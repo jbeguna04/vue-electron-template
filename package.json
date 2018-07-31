@@ -91,7 +91,7 @@
     "build:win-app": "run-s pack electron-builder",
     "dev": "node parcel-dev-script.js",
     "lint": "eslint --ext .js,.vue src test",
-    "lint:fix": "eslint --ext .js,.vue --fix src test",
+    "lint:fix": "eslint --ext .js,.vue --fix src",
     "pack": "run-p pack:main pack:renderer",
     "pack:main": "parcel build ./src/main/index.js --target node --out-dir ./dist --out-file main.js --no-source-maps",
     "pack:renderer": "parcel build ./src/renderer/index.html --target electron --out-dir ./dist --out-file index.html --no-source-maps",

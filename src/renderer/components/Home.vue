@@ -10,15 +10,19 @@
             </h1>
             <p>The boilerplate for making electron applications using vue.js </p>
           </div>
-          <br/>
+          <br>
           <div class="block has-text-centered">
-            <a class="button" href="https://github.com/mubaidr">
+            <a
+              class="button"
+              href="https://github.com/mubaidr">
               <span class="icon">
                 <i class="fab fa-github" />
               </span>
               <span>Follow me</span>
             </a>
-            <a class="button" href="https://github.com/mubaidr">
+            <a
+              class="button"
+              href="https://github.com/mubaidr">
               <span class="icon">
                 <i class="fa fa-star" />
               </span>
@@ -35,12 +39,12 @@
 </template>
 
 <script>
-import SystemInformation from './Home/SystemInformation'
+import SystemInformation from './Home/SystemInformation.vue'
 
 export default {
   name: 'Home',
 
-  components: { SystemInformation }
+  components: { SystemInformation },
 }
 </script>
 

@@ -10,11 +10,11 @@ if (process.env.NODE_ENV !== 'production') {
   try {
     // eslint-disable-next-line
     require('electron-debug')({
-      showDevTools: true
+      showDevTools: true,
     })
   } catch (err) {
     console.log(
-      'Failed to install `electron-debug`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. '
+      'Failed to install `electron-debug`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. ',
     )
   }
 } else {
@@ -27,7 +27,7 @@ function installDevTools() {
     require('vue-devtools').install() //eslint-disable-line
   } catch (err) {
     console.log(
-      'Failed to install `devtron` & `vue-devtools`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. '
+      'Failed to install `devtron` & `vue-devtools`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. ',
     )
   }
 }
@@ -45,9 +45,9 @@ function createWindow() {
     backgroundColor: '#fff',
     webPreferences: {
       nodeIntegrationInWorker: true,
-      webSecurity: false
+      webSecurity: false,
     },
-    show: false
+    show: false,
   })
 
   // mainWindow.setMenu(null)

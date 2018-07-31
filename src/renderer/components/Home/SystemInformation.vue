@@ -16,8 +16,9 @@
           <td>Vue.js</td>
           <td>{{ vue }}</td>
         </tr>
-        <tr v-for="lib in Object.keys(versions)"
-            :key="lib">
+        <tr
+          v-for="lib in Object.keys(versions)"
+          :key="lib">
           <td>{{ lib }}</td>
           <td>{{ versions[lib] }}</td>
         </tr>
@@ -27,15 +28,18 @@
 </template>
 
 <script>
+const os = require('os')
+const pck = require('vue/package.json')
+
 export default {
   data() {
     return {
       versions: process.versions,
-      platform: require('os').platform(),
-      vue: require('vue/package.json').version
+      platform: os.platform(),
+      vue: pck.version,
     }
   },
-  created() {}
+  created() {},
 }
 </script>
 

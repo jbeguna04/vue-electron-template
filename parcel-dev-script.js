@@ -10,7 +10,7 @@ let electronProcess = null
 async function startElectron() {
   electronProcess = spawn(electron, [
     '--inspect=5858',
-    Path.join(__dirname, './dist/main.js')
+    Path.join(__dirname, './dist/main.js'),
   ])
 
   electronProcess.stdout.on('data', data => {
@@ -34,7 +34,7 @@ async function runRendererBundle() {
     outFile: 'index.html',
     port: 1234,
     sourceMaps: false,
-    target: 'electron'
+    target: 'electron',
   }
 
   const bundler = new Bundler(file, options)
@@ -63,7 +63,7 @@ async function runMainBundle() {
     outFile: 'main.js',
     sourceMaps: false,
     target: 'node',
-    watch: true
+    watch: true,
   }
 
   // Initializes a bundler using the entrypoint location and options provided

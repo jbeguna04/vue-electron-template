@@ -6,7 +6,7 @@ import './assets/style/main.sass'
 import './assets/style/animations.sass'
 import './assets/fontawesome/css/fontawesome-all.css'
 
-import App from './App'
+import App from './App.vue'
 import router from './router'
 import store from './store'
 
@@ -18,9 +18,9 @@ Vue.use(require('vue-electron'))
 /* eslint-disable no-new */
 new Vue({
   components: {
-    App
+    App,
   },
   router,
   store,
-  template: '<App/>'
+  template: '<App/>',
 }).$mount('#app')

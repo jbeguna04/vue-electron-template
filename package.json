@@ -89,6 +89,7 @@
     "build:win": "run-s pack electron-builder --win",
     "build:win-app": "run-s pack electron-builder",
     "dev": "node parcel-dev-script.js",
+    "electron-builder": "electron-builder",
     "lint": "eslint --ext .js,.vue src test",
     "lint:fix": "eslint --ext .js,.vue --fix src",
     "pack": "run-p pack:main pack:renderer",

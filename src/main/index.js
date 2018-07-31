@@ -2,23 +2,24 @@
 import { app, BrowserWindow, ipcMain, Menu, MenuItem } from 'electron'
 /* eslint-enable */
 
+// disable electron security warnings
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
-let mainWindow
-let winURL = 'http://localhost:1234'
 
-if (process.env.NODE_ENV !== 'production') {
+let mainWindow
+let winURL = `file://${__dirname}/index.html`
+
+if (process.env.NODE_ENV === 'development') {
+  // use dev server
+  winURL = 'http://localhost:1234'
+
   try {
     // eslint-disable-next-line
     require('electron-debug')({
       showDevTools: true,
     })
   } catch (err) {
-    console.log(
-      'Failed to install `electron-debug`: Please set `NODE_ENV=production` before build to avoid installing debugging packages. ',
-    )
+    console.log('Failed to install `electron-debug`')
   }
-} else {
-  winURL = `file://${__dirname}/index.html`
 }
 
 function installDevTools() {
@@ -33,24 +34,21 @@ function installDevTools() {
 }
 
 function createWindow() {
-  /**
-   * Initial window options
-   */
+  // Initial window options
   mainWindow = new BrowserWindow({
-    useContentSize: true,
     width: 1000,
     height: 700,
     minWidth: 500,
     minHeight: 350,
     backgroundColor: '#fff',
     webPreferences: {
-      nodeIntegrationInWorker: true,
+      nodeIntegrationInWorker: false,
       webSecurity: false,
     },
     show: false,
   })
 
-  // mainWindow.setMenu(null)
+  mainWindow.setMenu(null)
   mainWindow.loadURL(winURL)
 
   // Show when loaded
@@ -58,10 +56,11 @@ function createWindow() {
     mainWindow.show()
     mainWindow.focus()
 
-    if (
-      process.env.ELECTRON_ENV === 'development' ||
-      process.argv.indexOf('--debug') !== -1
-    ) {
+    // open and install devtools if env is dev
+    if (process.env.NODE_ENV === 'development') {
+      mainWindow.webContents.openDevTools()
+      installDevTools()
+    } else if (process.argv.indexOf('--debug') !== -1) {
       mainWindow.webContents.openDevTools()
     }
   })
@@ -73,10 +72,6 @@ function createWindow() {
 
 app.on('ready', () => {
   createWindow()
-
-  if (process.env.NODE_ENV !== 'production') {
-    installDevTools()
-  }
 })
 
 app.on('window-all-closed', () => {

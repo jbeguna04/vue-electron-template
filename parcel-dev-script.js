@@ -33,6 +33,7 @@ async function runRendererBundle() {
     outDir: './dist',
     outFile: 'index.html',
     port: 1234,
+    // publicUrl: './',
     sourceMaps: false,
     target: 'electron',
   }

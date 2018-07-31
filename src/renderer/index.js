@@ -1,11 +1,5 @@
 import Vue from 'vue'
 
-import 'bulma-fluent/bulma.sass'
-
-import './assets/style/main.sass'
-import './assets/style/animations.sass'
-import './assets/fontawesome/css/fontawesome-all.css'
-
 import App from './App.vue'
 import router from './router'
 import store from './store'
